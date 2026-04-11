@@ -7,13 +7,13 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-ANTHROPIC_BASE_URL="https://api.minimax.io/v1"
-ANTHROPIC_API_KEY = os.getenv("ANTHROPIC_API_KEY")
+MINIMAX_BASE_URL="https://api.minimax.io/v1"
+MINIMAX_API_KEY = os.getenv("MINIMAX_API_KEY")
 WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 
 openai = OpenAI(
-    base_url=ANTHROPIC_BASE_URL,
-      api_key=ANTHROPIC_API_KEY,
+    base_url=MINIMAX_BASE_URL,
+      api_key=MINIMAX_API_KEY,
 )
 MODEL = "MiniMax-M2.7"
 # MODEL = "MiniMax-M2.7-highspeed"
