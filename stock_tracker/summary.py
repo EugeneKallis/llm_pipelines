@@ -27,4 +27,4 @@ def get_stock_summary(openai,webhook_url,ticker):
     if "</think>" in summary:
         summary = summary.split("</think>")[1]
     r = requests.post(webhook_url, json={"content": summary})
-    print(r.status_code)
+    return {"status_code": r.status_code, "summary": summary}
