@@ -1,10 +1,16 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
 [project]
 name = "llmpipelines"
 version = "0.1.0"
-description = "Add your description here"
+description = "Group of llm scripts i can call"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
-    "openai>=2.31.0",
     "yfinance>=1.2.1",
+    "openai>=2.31.0",
+    "requests>=2.33.1",
+    "python-dotenv"
 ]
