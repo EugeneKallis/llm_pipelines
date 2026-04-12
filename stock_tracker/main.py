@@ -6,10 +6,10 @@ import requests
 MODEL = "MiniMax-M2.7"
 MODEL = "llama3.2:1b"
 
-def get_stock_summary(openai,webhook_url,ticker):
+def get_stock_summary(openai, model, webhook_url,ticker):
     dat = yf.Ticker(ticker)
     response = openai.chat.completions.create(
-        model=MODEL,
+        model=model,
         messages=[
             {
                 "role": "system",

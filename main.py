@@ -10,6 +10,7 @@ MINIMAX_BASE_URL = "https://api.minimax.io/v1"
 MINIMAX_BASE_URL = "http://ollama.lan:11434/v1"
 MINIMAX_API_KEY = os.getenv("MINIMAX_API_KEY")
 WEBHOOK_URL = os.getenv("WEBHOOK_URL")
+MODEL = "qwen3.5:4b"
 
 openai = OpenAI(
     base_url=MINIMAX_BASE_URL,
@@ -27,5 +28,5 @@ def root():
 
 @app.get("/stocks_pipeline")
 def stocks_pipeline():
-    get_stock_summary(openai,WEBHOOK_URL,"AAPL")
+    get_stock_summary(openai,MODEL,WEBHOOK_URL,"AAPL")
 
