@@ -6,16 +6,6 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-MINIMAX_BASE_URL = "https://api.minimax.io/v1"
-MINIMAX_BASE_URL = "http://ollama.lan:11434/v1"
-MINIMAX_API_KEY = os.getenv("OPENAI_API_KEY")
-WEBHOOK_URL = os.getenv("WEBHOOK_URL")
-MODEL = "qwen3.5:4b"
-
-openai = OpenAI(
-    base_url=MINIMAX_BASE_URL,
-    api_key=MINIMAX_API_KEY,
-)
 
 
 app = FastAPI()
@@ -28,4 +18,4 @@ def root():
 
 @app.get("/stocks_pipeline/{ticker}")
 def stocks_pipeline(ticker:str):
-    get_stock_summary(openai, MODEL, WEBHOOK_URL, ticker)
+    return get_stock_summary(ticker)
