@@ -12,5 +12,6 @@ dependencies = [
     "yfinance>=1.2.1",
     "openai>=2.31.0",
     "requests>=2.33.1",
-    "python-dotenv"
+    "python-dotenv",
+    "fastapi[standard]"
 ]
