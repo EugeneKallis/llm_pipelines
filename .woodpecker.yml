@@ -20,7 +20,7 @@ steps:
       branch: main
       event: [ push, manual ]
     settings:
-      repo: ponzi/llm-pipelines
+      repo: eugenekallis/llm-pipelines
       dockerfile: Dockerfile
       context: .
       daemon_off: true
