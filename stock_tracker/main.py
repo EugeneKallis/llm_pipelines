@@ -36,15 +36,9 @@ def get_stock_summary(ticker):
     dat = yf.Ticker(ticker)
     newsapi_articles = fetch_newsapi_articles(ticker)
 
-    messages=[
-        {
-            "role": "system",
-            "content": "You are the hottest stock analyst in the world.",
-        },
-        # {"role":"user","content":f"Summarize this message about stock news in 5 bullets and give a bottom line of if its a good buy or sell: {dat.info}"},
-        {
-            "role": "user",
-            "content": f"""
+    message={
+                "system": "You are the hottest stock analyst in the world.",
+                "user": f"""
                         Summarize the following stock data for {ticker} in 5 bullets and give a bottom line of if its a good buy or sell:
                         
                         Quarterly Income Statement:
@@ -74,6 +68,6 @@ def get_stock_summary(ticker):
                         Company Info:
                         {dat.info}
             """,
-        },
-    ]
-    return messages
+        }
+    
+    return message
