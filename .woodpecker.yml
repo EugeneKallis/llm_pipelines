@@ -9,7 +9,7 @@ steps:
   - name: generate-tag
     image: alpine:latest
     when:
-      branch: develop
+      branch: main
       event: [ push, manual ]
     commands:
       - echo "dev-$(date +'%m.%d.%H-%M').${CI_COMMIT_SHA:0:8}" > .tags
@@ -17,7 +17,7 @@ steps:
   - name: build-app
     image: plugins/docker
     when:
-      branch: develop
+      branch: main
       event: [ push, manual ]
     settings:
       repo: ponzi/llm-pipelines
@@ -31,10 +31,10 @@ steps:
         from_secret: docker_password
     depends_on: [generate-tag]
 
-  - name: deploy-dev
+  - name: deploy
     image: alpine:latest
     when:
-      branch: develop
+      branch: main
       event: [ push, manual ]
     commands:
       - apk add --no-cache git yq openssh-client
