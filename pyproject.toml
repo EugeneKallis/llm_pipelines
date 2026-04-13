@@ -13,5 +13,11 @@ dependencies = [
     "openai>=2.31.0",
     "requests>=2.33.1",
     "python-dotenv",
-    "fastapi[standard]"
+    "fastapi[standard]",
 ]
+
+[project.optional-dependencies]
+cli = ["ollama"]
+
+[project.entry-points."stock_news_monitor.cli"]
+nvda = "stock_news_monitor.cli:main"
