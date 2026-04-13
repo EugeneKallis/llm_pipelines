@@ -42,8 +42,33 @@ print(response["message"]["content"])
 
 ### `stock_tracker` — Financial data + analyst summary (requires NewsAPI key)
 
-```bash
-pip install ollama  # optional, for CLI use
-```
-
 Set `NEWS_API_KEY` and `NEWS_API_URL` in `.env` (see `.env.example`).
+
+---
+
+## FastAPI Endpoints
+
+Start with: `uv run fastapi dev main.py`
+
+| Endpoint | Description |
+|---|---|
+| `GET /` | Health check |
+| `GET /stocks_pipeline/{ticker}` | Full financial pipeline (yfinance + NewsAPI) |
+| `GET /stock-news/{ticker}` | Fetch news, return `{"system": "...", "user": "..."}` |
+| `GET /stock-news/{ticker}/summary` | Fetch news + run through LLM, return analysis |
+
+**Query params:**
+- `hours` — lookback window in hours (default 24)
+
+**`/stock-news/{ticker}/summary` LLM selection:**
+- Uses OpenAI if `OPENAI_API_KEY` is set
+- Falls back to Ollama at `localhost:11434` using `qwen2.5:7b`
+- Override with `LLM_MODEL` env var
+
+```bash
+# Preview the LLM prompt
+curl "http://localhost:8000/stock-news/NVDA?hours=24"
+
+# Full analysis (Ollama or OpenAI)
+curl "http://localhost:8000/stock-news/NVDA/summary?hours=24"
+```
